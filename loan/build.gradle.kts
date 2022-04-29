@@ -1,13 +1,11 @@
 plugins {
-    java
+    application
 }
 
-version = "unspecified"
-
-repositories {
-    mavenCentral()
+application {
+    mainClass.set("src/main/java/Main")
 }
 
-dependencies {
-    testCompile("junit", "junit", "4.12")
+tasks.named<Test>("test") {
+    useJUnitPlatform()
 }
