@@ -1,13 +1,21 @@
 plugins {
-    java
+    application
 }
-
-version = "unspecified"
 
 repositories {
     mavenCentral()
 }
 
+application {
+    mainClass.set("src/main/java/Main")
+}
+
 dependencies {
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit")
+
+    implementation("com.google.guava:guava:30.1.1-jre")
+}
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
 }

@@ -1,5 +1,11 @@
-allprojects {
-    dependencies {
-        implementation(files("libs/jacop-4.0.0.jar"))
-    }
+plugins {
+    application
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.jacop:jacop:4.8.0")
 }
