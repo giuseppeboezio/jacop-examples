@@ -8,4 +8,6 @@
  */
 
 rootProject.name = "jacop-examples"
-include("app")
+include("austr")
+include("cakes")
+include("loan")
