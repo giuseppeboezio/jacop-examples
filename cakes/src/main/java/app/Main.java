@@ -27,8 +27,6 @@ public class Main {
         IntVar banana = new IntVar(store, "banana", 1, MAX_NUM_CAKES);
         IntVar chocolate = new IntVar(store, "chocolate", 1, MAX_NUM_CAKES);
         IntVar[] cakes = {banana, chocolate};
-        IntVar cost = new IntVar(store);
-
 
         // definition of constraints
         store.impose(new LinearInt(cakes, new int[] {250, 200},"<=", FLOUR));
@@ -37,9 +35,7 @@ public class Main {
         store.impose(new LinearInt(cakes, new int[] {100, 150}, "<=", BUTTER));
         store.impose(new LinearInt(new IntVar[]{chocolate}, new int[] {75}, "<=", COCOA));
 
-        store.impose(new LinearInt(cakes, new int[] {-400, -450}, "==", cost));
-
-
+        
 
 
 
