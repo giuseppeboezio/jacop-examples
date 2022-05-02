@@ -28,12 +28,20 @@ public class Main {
         IntVar chocolate = new IntVar(store, "chocolate", 1, MAX_NUM_CAKES);
         IntVar[] cakes = {banana, chocolate};
 
+        // cost function
+        IntVar cost = new IntVar(store, "profit");
+
         // definition of constraints
         store.impose(new LinearInt(cakes, new int[] {250, 200},"<=", FLOUR));
         store.impose(new LinearInt(new IntVar[] {banana}, new int[]{2}, "<=", BANANA));
         store.impose(new LinearInt(cakes, new int[] {75, 150}, "<=", SUGAR));
         store.impose(new LinearInt(cakes, new int[] {100, 150}, "<=", BUTTER));
         store.impose(new LinearInt(new IntVar[]{chocolate}, new int[] {75}, "<=", COCOA));
+
+        // cost function constraint
+        store.impose(new LinearInt(cakes, new int[]{-400, -450}, "==", cost));
+
+        
 
         
 
