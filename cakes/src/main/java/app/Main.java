@@ -3,6 +3,7 @@ package app;
 import org.jacop.constraints.LinearInt;
 import org.jacop.core.IntVar;
 import org.jacop.core.Store;
+import org.jacop.search.*;
 
 /*
 cake baking problem
@@ -41,11 +42,23 @@ public class Main {
         // cost function constraint
         store.impose(new LinearInt(cakes, new int[]{-400, -450}, "==", cost));
 
-        
+        // search for a solution which minimizes the cost function
+        IntVar[] vars = new IntVar[] {cakes[0], cakes[1], cost};
 
-        
+        Search<IntVar> label = new DepthFirstSearch<IntVar>();
+        SelectChoicePoint<IntVar> select = new SimpleSelect<IntVar>(vars,
+                new SmallestDomain<IntVar>(),
+                new IndomainMin<IntVar>());
+        boolean result = label.labeling(store, select, cost);
 
+        if (result) {
+            System.out.println("Solution:");
+            for (IntVar var: vars){
+                System.out.println(var);
+            }
 
+        } else
+            System.out.println("No feasible solutions");
 
     }
 }
