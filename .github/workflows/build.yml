@@ -1,0 +1,8 @@
+name: build
+on: push
+jobs:
+  run_cakes:
+    runs-on: windows-latest
+    steps:
+      - name: build execution
+        run: gradle :cakes:run
