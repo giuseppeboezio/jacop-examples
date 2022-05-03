@@ -2,7 +2,6 @@ name: build
 on: push
 jobs:
   run_cakes:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: build execution
-        run: gradle :cakes:run
+      - run: gradle :cakes:run
