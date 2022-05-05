@@ -1,6 +1,7 @@
 package app;
 
 import org.jacop.constraints.LinearInt;
+import org.jacop.constraints.XmulCeqZ;
 import org.jacop.core.IntVar;
 import org.jacop.core.Store;
 import org.jacop.search.*;
@@ -31,11 +32,17 @@ public class Main {
 
         // cost function
         IntVar cost = new IntVar(store,
-                "profit",
+                "cost",
                  -85000, // - 400 * banana.min() - 450 * chocolate.min()
                  0 // - 400 * banana.max() - 450 * chocolate.max()
         );
 
+        // function to optimize
+        IntVar profit = new IntVar(store,
+                            "profit",
+                            0,
+                            85000
+        );
 
         // definition of constraints
         store.impose(new LinearInt(cakes, new int[] {250, 200},"<=", FLOUR));
@@ -44,11 +51,12 @@ public class Main {
         store.impose(new LinearInt(cakes, new int[] {100, 150}, "<=", BUTTER));
         store.impose(new LinearInt(new IntVar[]{chocolate}, new int[] {75}, "<=", COCOA));
 
-        // cost function constraint
-        store.impose(new LinearInt(cakes, new int[]{-400, -450}, "==", cost));
+        // optimization constraints
+        store.impose(new LinearInt(cakes, new int[]{400, 450}, "==", profit));
+        store.impose(new XmulCeqZ(profit, -1, cost));
 
         // search for a solution which minimizes the cost function
-        IntVar[] vars = new IntVar[] {cakes[0], cakes[1], cost};
+        IntVar[] vars = new IntVar[] {cakes[0], cakes[1], profit};
 
         Search<IntVar> label = new DepthFirstSearch<IntVar>();
         SelectChoicePoint<IntVar> select = new SimpleSelect<IntVar>(vars,
