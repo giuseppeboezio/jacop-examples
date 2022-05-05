@@ -29,13 +29,13 @@ public class Main {
         IntVar chocolate = new IntVar(store, "chocolate", 0, MAX_NUM_CAKES);
         IntVar[] cakes = {banana, chocolate};
 
-
         // cost function
         IntVar cost = new IntVar(store,
                 "profit",
-                 - 85000, // - 400 * banana.min() - 450 * chocolate.min()
+                 -85000, // - 400 * banana.min() - 450 * chocolate.min()
                  0 // - 400 * banana.max() - 450 * chocolate.max()
         );
+
 
         // definition of constraints
         store.impose(new LinearInt(cakes, new int[] {250, 200},"<=", FLOUR));
