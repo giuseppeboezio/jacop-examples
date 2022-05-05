@@ -33,15 +33,15 @@ public class Main {
         // cost function
         IntVar cost = new IntVar(store,
                 "cost",
-                 -85000, // - 400 * banana.min() - 450 * chocolate.min()
-                 0 // - 400 * banana.max() - 450 * chocolate.max()
+                - 400 * banana.max() - 450 * chocolate.max(),
+                - 400 * banana.min() - 450 * chocolate.min()
         );
 
         // function to optimize
         IntVar profit = new IntVar(store,
                             "profit",
-                            0,
-                            85000
+                            400 * banana.min() + 450 * chocolate.min(),
+                            400 * banana.max() + 450 * chocolate.max()
         );
 
         // definition of constraints
