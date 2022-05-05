@@ -3,7 +3,7 @@ plugins {
 }
 
 application {
-    mainClass.set("src/main/java/Main")
+    mainClass.set("app.Main")
 }
 
 tasks.named<Test>("test") {
