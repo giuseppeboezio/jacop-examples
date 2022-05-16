@@ -1,9 +1,10 @@
 plugins {
     application
+    kotlin("jvm")
 }
 
 application {
-    mainClass.set("app.Main")
+    mainClass.set("app.MainKt")
 }
 
 tasks.named<Test>("test") {

@@ -17,6 +17,10 @@ public class Main {
 
         Store store = new Store();
 
+        // [[ X #> Y ]] ->  XgtY([[X]], [[Y]])
+        // [[ X ]] -> x;
+        // [[ X in c1..c2 ]] -> IntVar x = new IntVar("x", c1, c2)
+
         // definition of variables
         IntVar wa = new IntVar(store, "wa", 1, NUM_COLOURS);
         IntVar nt = new IntVar(store, "nt", 1, NUM_COLOURS);

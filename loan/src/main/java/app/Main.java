@@ -1,5 +1,6 @@
 package app;
 
+import it.unibo.tuprolog.solve.Solver;
 import org.jacop.core.Store;
 import org.jacop.floats.constraints.PmulCeqR;
 import org.jacop.floats.constraints.PmulQeqR;
